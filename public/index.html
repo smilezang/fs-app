@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>재무제표 시각화</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>재무제표 시각화</h1>
+    </header>
+    
+    <div class="search-section">
+      <div class="search-container">
+        <div class="autocomplete-container">
+          <input type="text" id="company-search" placeholder="회사명을 입력하세요...">
+          <div id="autocomplete-results" class="autocomplete-results" style="display: none;"></div>
+        </div>
+        <button id="search-btn">검색</button>
+      </div>
+      <div id="search-results" class="search-results"></div>
+    </div>
+    
+    <div class="options-section" id="options-section" style="display: none;">
+      <div class="company-info">
+        <h2 id="selected-company-name"></h2>
+        <p id="selected-company-code"></p>
+      </div>
+      
+      <div class="filters">
+        <div class="filter-group">
+          <label for="year-select">사업연도:</label>
+          <select id="year-select">
+            <option value="2023">2023년</option>
+            <option value="2022">2022년</option>
+            <option value="2021">2021년</option>
+            <option value="2020">2020년</option>
+            <option value="2019">2019년</option>
+            <option value="2018" selected>2018년</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="report-select">보고서:</label>
+          <select id="report-select">
+            <option value="11011" selected>사업보고서</option>
+            <option value="11012">반기보고서</option>
+            <option value="11013">1분기보고서</option>
+            <option value="11014">3분기보고서</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <label for="fs-div-select">재무제표 구분:</label>
+          <select id="fs-div-select">
+            <option value="CFS" selected>연결 재무제표</option>
+            <option value="OFS">개별 재무제표</option>
+          </select>
+        </div>
+        
+        <button id="load-data-btn">데이터 불러오기</button>
+      </div>
+    </div>
+    
+    <div class="results-section" id="results-section" style="display: none;">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="bs">재무상태표</button>
+        <button class="tab-btn" data-tab="is">손익계산서</button>
+        <button class="tab-btn" data-tab="explain">쉬운 설명</button>
+      </div>
+      
+      <div class="tab-content active" id="bs-content">
+        <div class="chart-container">
+          <canvas id="bs-chart"></canvas>
+        </div>
+        <div class="chart-container">
+          <canvas id="bs-equation-chart"></canvas>
+        </div>
+        <div class="table-container">
+          <table id="bs-table">
+            <thead>
+              <tr>
+                <th>계정과목</th>
+                <th>당기</th>
+                <th>전기</th>
+                <th>전전기</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="is-content">
+        <div class="chart-container">
+          <canvas id="is-chart"></canvas>
+        </div>
+        <div class="table-container">
+          <table id="is-table">
+            <thead>
+              <tr>
+                <th>계정과목</th>
+                <th>당기</th>
+                <th>전기</th>
+                <th>전전기</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+      
+      <div class="tab-content" id="explain-content">
+        <div class="explanation-container">
+          <div id="explanation-content">
+            <div class="explanation-placeholder">
+              <p>재무제표 설명을 불러오는 중입니다...</p>
+              <button id="generate-explanation-btn" class="explanation-btn">AI 설명 생성하기</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="loading" class="loading" style="display: none;">
+      <div class="spinner"></div>
+      <p>데이터를 불러오는 중입니다...</p>
+    </div>
+    
+    <div id="error-message" class="error-message" style="display: none;"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

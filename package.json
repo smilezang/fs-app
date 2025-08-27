@@ -1,0 +1,25 @@
+{
+  "name": "fs-project",
+  "version": "1.0.0",
+  "description": "OpenDART API를 사용하는 프로젝트",
+  "main": "index.js",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "adm-zip": "^0.5.16",
+    "axios": "^1.6.0",
+    "chart.js": "^4.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^5.1.0",
+    "xml2js": "^0.6.2"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "download-corps": "node download-corp-codes.js",
+    "dev": "nodemon server.js",
+    "build": "echo 'Build completed'"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
