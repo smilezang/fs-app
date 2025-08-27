@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: fs-project
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: OPEN_DART_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
